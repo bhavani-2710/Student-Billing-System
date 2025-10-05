@@ -215,11 +215,11 @@ public class Home extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/frs", "user", "password");
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://ep-bitter-pine-adyfihsg-pooler.c-2.us-east-1.aws.neon.tech/neondb", "neondb_owner", "npg_yaANFWC5MHB8");
             stmt = con.createStatement();
 
-            rs = stmt.executeQuery("SELECT * FROM frs.fees INNER JOIN frs.users ON fees.student_id=users.user_id WHERE balance>0;");
+            rs = stmt.executeQuery("SELECT * FROM fees INNER JOIN users ON fees.student_id=users.user_id WHERE balance>0;");
 
             String result[][] = new String[100][9];
             int i = 0;
@@ -266,11 +266,11 @@ public class Home extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/frs", "user", "password");
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://ep-bitter-pine-adyfihsg-pooler.c-2.us-east-1.aws.neon.tech/neondb", "neondb_owner", "npg_yaANFWC5MHB8");
             stmt = con.createStatement();
 
-            rs = stmt.executeQuery("SELECT * FROM frs.fees INNER JOIN frs.users ON fees.student_id=users.user_id;");
+            rs = stmt.executeQuery("SELECT * FROM fees INNER JOIN users ON fees.student_id=users.user_id;");
 
             String result[][] = new String[100][9];
             int i = 0;

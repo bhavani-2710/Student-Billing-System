@@ -426,8 +426,8 @@ public class NewStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/frs", "user", "password");
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://ep-bitter-pine-adyfihsg-pooler.c-2.us-east-1.aws.neon.tech/neondb", "neondb_owner", "npg_yaANFWC5MHB8");
             stmt = con.createStatement();
 
             student_id = jTextField1.getText();

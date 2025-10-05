@@ -252,17 +252,17 @@ public class PayBalance extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/frs", "user", "password");
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://ep-bitter-pine-adyfihsg-pooler.c-2.us-east-1.aws.neon.tech/neondb", "neondb_owner", "npg_yaANFWC5MHB8");
             stmt = con.createStatement();
 
             student_id = jTextField1.getText();
             mobile = jTextField2.getText();
 
             if ((student_id.length() == 0) || (mobile.length() == 0)) {
-                rs = stmt.executeQuery("SELECT * FROM frs.fees INNER JOIN frs.users ON fees.student_id=users.user_id WHERE student_id = '" + student_id + "' OR mobile = '" + mobile + "'");
+                rs = stmt.executeQuery("SELECT * FROM fees INNER JOIN users ON fees.student_id=users.user_id WHERE student_id = '" + student_id + "' OR mobile = '" + mobile + "'");
             } else {
-                rs = stmt.executeQuery("SELECT * FROM frs.fees INNER JOIN frs.users ON fees.student_id=users.user_id WHERE student_id = '" + student_id + "' AND mobile = '" + mobile + "'");
+                rs = stmt.executeQuery("SELECT * FROM fees INNER JOIN users ON fees.student_id=users.user_id WHERE student_id = '" + student_id + "' AND mobile = '" + mobile + "'");
                 flag = 1;
             }
             // Dont forget that in SQL queries, a string should be in single quotes
@@ -288,8 +288,8 @@ public class PayBalance extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/frs", "user", "password");
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://ep-bitter-pine-adyfihsg-pooler.c-2.us-east-1.aws.neon.tech/neondb", "neondb_owner", "npg_yaANFWC5MHB8");
             stmt = con.createStatement();
 
             money_paid = Double.parseDouble(jTextField3.getText());
@@ -301,7 +301,7 @@ public class PayBalance extends javax.swing.JFrame {
             } else if (new_balance < 0) {
                 JOptionPane.showMessageDialog(this, "Enter the correct amount to pay !!");
             } else {
-                int j = stmt.executeUpdate("UPDATE frs.fees SET balance = " + new_balance + " WHERE student_id = '" + student_id + "'");
+                int j = stmt.executeUpdate("UPDATE fees SET balance = " + new_balance + " WHERE student_id = '" + student_id + "'");
 
                 if (j == 1) {
                     JOptionPane.showMessageDialog(this, "Balance Updated !!");
